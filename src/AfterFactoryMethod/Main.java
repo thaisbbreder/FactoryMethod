@@ -1,6 +1,5 @@
 package AfterFactoryMethod;
 
-// Classe principal para testar o Factory Method
 public class Main {
     public static void main(String[] args) {
         // Criando a fábrica
