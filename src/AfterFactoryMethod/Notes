@@ -1,0 +1,24 @@
+# Com Factory Method
+
+## Visão Geral
+Este código segue o padrão **Factory Method**, que encapsula a criação de objetos dentro de uma fábrica. Isso torna o código mais flexível, desacoplado e fácil de expandir.
+
+## Componentes Principais
+
+- **Interface `Notification`:**
+  Define um contrato (`notifyUser()`) para todos os tipos de notificações.
+
+- **Classes Concretas (`EmailNotification`, `SMSNotification`, `PushNotification`):**
+  Implementam `Notification` e definem o comportamento específico de cada notificação.
+
+- **Classe `NotificationFactory`:**
+ Contém os métodos createEmailNotification(), createSMSNotification(), e createPushNotification(), que retornam os tipos específicos de notificação. A fábrica centraliza a criação dos objetos, garantindo que o código principal não precise lidar diretamente com a criação de instâncias de notificações.
+
+- **Classe `NotificationSystemFactory` (Main):**
+  A classe principal que utiliza a NotificationFactory para criar instâncias das notificações. Em vez de instanciar diretamente as notificações, ela chama os métodos da fábrica para obter os objetos e chamar o método notifyUser(), sem se preocupar com a implementação concreta das notificações.
+
+## Vantagens
+
+✅ **Desacoplamento** → O código cliente (`main`) não precisa saber qual classe concreta está sendo usada.
+✅ **Facilidade de manutenção** → Se precisarmos adicionar um novo tipo de notificação, basta criar uma nova classe e modificar a fábrica, sem alterar o código cliente.
+✅ **Código mais limpo** → Evita `if-else` extensivos no código principal.

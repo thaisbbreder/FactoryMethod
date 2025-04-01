@@ -1,0 +1,21 @@
+# Sem Factory Method
+## Visão Geral
+Este código não segue o padrão **Factory Method**, pois  ele cria diretamente as instâncias de cada tipo de notificação (Email, SMS, Push) dentro do código principal (MainBefore). O padrão Factory Method seria utilizado se, ao invés de instanciar as notificações diretamente, você tivesse uma fábrica que criasse as instâncias de acordo com o tipo de notificação. Embora simples, essa abordagem tende a ser difícil de escalar e manter à medida que o número de tipos de notificações cresce.
+
+## Componentes Principais
+- **Classe `EmailNotificacao`:**
+  Define o comportamento de envio de e-mails. Contém o método `enviar(String mensagem)` para enviar uma mensagem via e-mail.
+
+- **Classe `SMSNotificacao`:**
+  Define o comportamento de envio de SMS. Contém o método `enviar(String mensagem)` para enviar uma mensagem via SMS.
+
+- **Classe `PushNotificacao`:**
+  Define o comportamento de envio de notificações push. Contém o método `enviar(String mensagem)` para enviar uma mensagem via push.
+
+- **Classe `MainBefore`:**
+A classe principal onde são criadas diretamente as instâncias das classes EmailNotificacao, SMSNotificacao e PushNotificacao. O código instancia cada tipo de notificação explicitamente e chama o método enviar() de cada uma delas, passando uma mensagem específica para cada tipo de notificação. Não há escolha dinâmica de notificação, todas as instâncias são criadas de antemão no código.
+
+## Desvantagens
+❌ **Alto acoplamento** → O código principal (`MainBefore`) precisa conhecer todas as classes concretas, o que torna difícil modificar ou adicionar novos tipos de notificação.
+❌ **Dificuldade de escalabilidade** → Cada novo tipo de notificação requer uma modificação no código principal, o que pode tornar o código desorganizado e difícil de manter.
+❌ **Código menos limpo** → O uso de múltiplos `if-else` ou `switch-case` pode levar a um código mais extenso e menos modular.
